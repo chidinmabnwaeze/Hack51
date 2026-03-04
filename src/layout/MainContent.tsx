@@ -7,8 +7,15 @@ const MainContent = () => {
     <div className="min-h-screen flex">
       {/* left sidebar */}
       <Sidebar
-        title="Dashboard"
-        items={["Home", "Profile", "Settings", "Logout"]}
+        title=""
+        items={
+          [
+            { name: "Dashboard", icon: "/icons/dashboard.svg", path: "/" },
+            { name: "Requests", icon: "/icons/requests.svg", path: "/requests" },
+            { name: "Shortlists", icon: "/icons/shortlists.svg", path: "/shortlists" },
+            { name: "Billing", icon: "/icons/billing.svg", path: "/billing" }
+          ]}
+
       />
 
       {/* main area including header and page content */}
@@ -20,7 +27,7 @@ const MainContent = () => {
           usermode="Admin"
           avatar="/avatar.png"
         />
-        <main className="ml-64 mt-16 p-6">
+        <main className="ml-64 mt-16 p-6 bg-gray-50 min-h-screen">
           <Outlet />
         </main>
       </div>
