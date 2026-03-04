@@ -9,14 +9,14 @@ interface Metrics {
   status: string;
   info: string;
 }
-interface ActiveRequest {
-  title: string;
-  submissions: [{}];
-  hiringManager: string;
-  status: string;
-}
+
+import { useNavigate } from "react-router-dom";
+import RequestTable from "../components/RequestTable";
+import type { ActiveRequest } from "../components/RequestTable";
 
 const Dashboard = ({ title, description }: DashboardProps) => {
+  const navigate = useNavigate();
+
   const metrics: Metrics[] = [
     {
       name: "Total Active Requests",
@@ -45,24 +45,18 @@ const Dashboard = ({ title, description }: DashboardProps) => {
       info: "Completed Hiring Cycles",
     },
   ];
-  const tableHeaders = [
-    "Request Title",
-    "Submissions",
-    "Days Left",
-    "Status",
-    "Actions",
-  ];
 
-  const activeRequests = [
+  // sample data passed to shared table
+  const activeRequests: ActiveRequest[] = [
     {
       title: "Software Engineer",
-      submissions: "Engineering",
+      submissions: [{ submitted: 30, total: 100, percentage: 30 }],
       days_left: 15,
       status: "Open",
     },
     {
       title: "Product Manager",
-      submissions: "Product",
+      submissions: [{ submitted: 25, total: 50, percentage: 50 }],
       days_left: 10,
       status: "Open",
     },
@@ -84,7 +78,7 @@ const Dashboard = ({ title, description }: DashboardProps) => {
 
       {/* dashboard content */}
 
-      <section className="grid grid-cols-4 gap-4 mt-6">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
         {/* Example metric card */}
         {metrics.map((metric, index) => (
           <div
@@ -118,46 +112,37 @@ const Dashboard = ({ title, description }: DashboardProps) => {
               placeholder="Search requests..."
               className="border border-gray-100 p-2 rounded-lg shadow w-full  mx-6"
             />
-            <button className="bg-[#FF0046] hover:bg-red-700 text-white font-bold py-2 px-6 whitespace-nowrap rounded">
+            <button
+              onClick={() => navigate("/requests")}
+              className="bg-[#FF0046] hover:bg-red-700 text-white font-bold py-2 px-6 whitespace-nowrap rounded"
+            >
               View All
             </button>
           </div>
         </div>
-        {/* Active requests table */}
-        <table className="min-w-full bg-white">
-          <thead>
-            <tr className="bg-gray-50">
-              {tableHeaders.map((header, index) => (
-                <th
-                  key={index}
-                  className="py-2 px-4 border-b border-gray-100 text-left"
-                >
-                  {header}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="">
-            {/* Example rows */}
-            <tr className="border-b border-gray-100 p-6">
-              <td className="py-2 px-4">Software Engineer</td>
-              <td className="py-2 px-4">Engineering</td>
-              <td className="py-2 px-4">15</td>
-              <td className="py-2 px-4 text-green-500">Open</td>
-              <td className="py-2 px-4">
-                <button className="text-gray-500 hover:text-gray-700 mr-2 border border-gray-200 px-3 py-1 rounded">
-                  View Details
-                </button>
-                <button className="text-red-500 hover:text-red-700">
-                  Close Request
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+
+        {/* use shared table component */}
+        <RequestTable requests={activeRequests} />
       </section>
 
-      <section className="bg-white p-34 shadow mt-8 rounded-2xl"></section>
+      <section className="bg-white p-8 shadow mt-8 rounded-2xl">
+        <h2 className="text-xl font-bold">Challenge Insights</h2>
+        <p className="text-gray-600 mt-2">
+          Your challenges are performing better than 78% of other companies in
+          the Technology sector. Candidates appreciate the clarity of the Senior
+          Product Designer challenge.
+        </p>
+        <div className="flex my-6 gap-6">
+          <div className="shadow rounded-lg p-4 border border-gray-200">
+            <h3 className="text-md font-semibold">Completion Rate</h3>
+            <p className="text-2xl font-bold text-green-500">95%</p>
+          </div>
+          <div className="shadow rounded-lg p-4 border border-gray-200">
+            <h3 className="text-md font-semibold">Average Score</h3>
+            <p className="text-2xl font-bold text-green-500">7.8/10</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

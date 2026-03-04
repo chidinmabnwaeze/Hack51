@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import MainContent from "../layout/MainContent";
 import Dashboard from "../pages/Dashboard";
+import Requests from "../pages/Requests";
 
 const AppRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoutes = () => {
             />
           }
         />
+        <Route path="requests" element={<Requests />} />
       </Route>
     </Routes>
   );
