@@ -13,7 +13,8 @@ const MainContent = () => {
             { name: "Dashboard", icon: "/icons/dashboard.svg", path: "/" },
             { name: "Requests", icon: "/icons/requests.svg", path: "/requests" },
             { name: "Shortlists", icon: "/icons/shortlists.svg", path: "/shortlists" },
-            { name: "Billing", icon: "/icons/billing.svg", path: "/billing" }
+            { name: "Billing", icon: "/icons/billing.svg", path: "/billing" },
+            // { name: "Challenge", icon: "/icons/settings.svg", path: "/challenge" }
           ]}
 
       />

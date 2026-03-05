@@ -12,6 +12,7 @@ interface Metrics {
 
 import { useNavigate } from "react-router-dom";
 import RequestTable from "../components/RequestTable";
+import Challenge from "./Challenge";
 import type { ActiveRequest } from "../components/RequestTable";
 
 const Dashboard = ({ title, description }: DashboardProps) => {
@@ -70,7 +71,10 @@ const Dashboard = ({ title, description }: DashboardProps) => {
           <p className="text-gray-600 mt-2">{description}</p>
         </div>
         <div>
-          <button className="bg-[#FF0046] hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg">
+          <button
+            onClick={() => navigate("/challenge")}
+            className="bg-[#FF0046] hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg"
+          >
             Hire A New Role
           </button>
         </div>
