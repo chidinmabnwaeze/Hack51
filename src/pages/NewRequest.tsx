@@ -1,8 +1,18 @@
-import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import StepContent from "../components/StepContent";
+import StepIndicator from "../components/StepIndicator";
 
 const NewRequest = () => {
   const navigate = useNavigate();
+  const [step, setStep] = useState(1);
+
+  const nextStep = () => {
+    setStep(step + 1);
+  };
+  const prevStep = () => {
+    setStep((prev) => prev - 1);
+  };
 
   return (
     <div className="">
@@ -20,43 +30,42 @@ const NewRequest = () => {
             team.
           </p>
         </div>
-        <button className="bg-[#FF0046] hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-          Create Custom Request
-        </button>
-      </section>
-      {/* create a progress indicator for the steps of creating a new request, with
-      the current step highlighted */}
-      <section className=" indicators mt-6">
-        <div className="bg-gray-100">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-[#FF0046] text-white flex items-center justify-center text-xs font-bold">
-                1
-              </div>
-              <span className="text-sm font-medium">Request Details</span>
-            </div>
-            <div className="w-8 h-1 bg-gray-200 rounded-full"></div>
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center text-xs font-bold">
-                2
-              </div>
-              <span className="text-sm font-medium">Job Description</span>
-            </div>
-            <div className="w-8 h-1 bg-gray-200 rounded-full"></div>
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center text-xs font-bold">
-                3
-              </div>
-              <span className="text-sm font-medium">Review & Submit</span>
-            </div>
-          </div>
+        <div>
+          <button className="bg-[#FF0046] hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">
+            Create Custom Request
+          </button>
         </div>
-        {/* </section>      
-        <section className="mt-6 shadow bg-white p-6 rounded-2xl">  
-            
-
-</div> */}
       </section>
+      {/* indicators */}
+      <StepIndicator currentStep={step} />
+      {/* content */}
+      <StepContent step={step} />
+
+      <div>
+        {step > 1 && (
+          <button
+            onClick={prevStep}
+            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg"
+          >
+            Previous
+          </button>
+        )}
+        {step < 3 ? (
+          <button
+            onClick={nextStep}
+            className="bg-[#FF0046] hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg ml-4"
+          >
+            {step === 2 ? "Submit" : "Next"}
+          </button>
+        ) : (
+          <button
+            onClick={() => navigate("/requests")}
+            className="bg-[#FF0046] hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg ml-4"
+          >
+            Submit
+          </button>
+        )}
+      </div>
     </div>
   );
 };
