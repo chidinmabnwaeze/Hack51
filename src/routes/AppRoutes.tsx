@@ -4,6 +4,7 @@ import Dashboard from "../pages/Dashboard";
 import Requests from "../pages/Requests";
 import Shortlist from "../pages/Shortlist";
 import Challenge from "../pages/Challenge";
+import NewRequest from "../pages/NewRequest";
 
 const AppRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const AppRoutes = () => {
         <Route path="shortlists" element={<Shortlist />} />
         <Route path="billing" element={<div>Billing</div>} />
         <Route path="challenge" element={<Challenge />} />
+        <Route path="new-request" element={<NewRequest />} />
       </Route>
     </Routes>
   );
