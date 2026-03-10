@@ -12,7 +12,7 @@ interface Metrics {
 
 import { useNavigate } from "react-router-dom";
 import RequestTable from "../components/RequestTable";
-import Challenge from "./Challenge";
+import Challenge from "../components/steps/Challenge";
 import type { ActiveRequest } from "../components/RequestTable";
 
 const Dashboard = ({ title, description }: DashboardProps) => {

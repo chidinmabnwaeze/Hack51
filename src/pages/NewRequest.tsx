@@ -41,7 +41,7 @@ const NewRequest = () => {
       {/* content */}
       <StepContent step={step} />
 
-      <div>
+      <div className="flex justify-end mt-6">
         {step > 1 && (
           <button
             onClick={prevStep}
@@ -50,12 +50,12 @@ const NewRequest = () => {
             Previous
           </button>
         )}
-        {step < 3 ? (
+        {step < 6 ? (
           <button
             onClick={nextStep}
             className="bg-[#FF0046] hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg ml-4"
           >
-            {step === 2 ? "Submit" : "Next"}
+            {step === 6 ? "Submit" : "Next"}
           </button>
         ) : (
           <button

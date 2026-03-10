@@ -48,7 +48,7 @@ const StepIndicator = ({ currentStep }: { currentStep: number }) => {
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${currentStep === index + 1 ? getStatusStyles("current") : getStatusStyles(step.status)}`}
                 >
-                  {index + 1}
+                  {/* {index + 1} */}
                 </div>
               </div>
               {index !== steps.length - 1 && (

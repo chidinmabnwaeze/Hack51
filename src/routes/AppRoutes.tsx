@@ -3,7 +3,7 @@ import MainContent from "../layout/MainContent";
 import Dashboard from "../pages/Dashboard";
 import Requests from "../pages/Requests";
 import Shortlist from "../pages/Shortlist";
-import Challenge from "../pages/Challenge";
+// import Challenge from "../components/steps/Challenge";
 import NewRequest from "../pages/NewRequest";
 
 const AppRoutes = () => {
@@ -22,7 +22,7 @@ const AppRoutes = () => {
         <Route path="requests" element={<Requests />} />
         <Route path="shortlists" element={<Shortlist />} />
         <Route path="billing" element={<div>Billing</div>} />
-        <Route path="challenge" element={<Challenge />} />
+        {/* <Route path="challenge" element={<Challenge />} /> */}
         <Route path="new-request" element={<NewRequest />} />
       </Route>
     </Routes>

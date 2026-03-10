@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ChallengeCard from "../components/ChallengeCard";
+import ChallengeCard from "../ChallengeCard";
 
 const Challenge = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -19,10 +19,11 @@ const Challenge = () => {
   };
 
   return (
-    <div>
+    <div className="mt-20">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">Challenge Details</h1>
-        <div className="">
+
+        {/* <div className="">
           <button className="mx-8 pointer-cursor">Go Back</button>
           <button
             onClick={handleUse}
@@ -30,7 +31,7 @@ const Challenge = () => {
           >
             Use Challenge
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* content */}
