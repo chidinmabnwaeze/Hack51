@@ -1,3 +1,5 @@
+import { Trash2 } from "lucide-react";
+
 const ChallengeEditor = () => {
   const details = [
     {
@@ -9,6 +11,13 @@ const ChallengeEditor = () => {
       value: "Expert level",
     },
   ];
+
+  const addDeliverable = (e) => {
+    // logic to add a new deliverable
+    e.preventDefault;
+    const value = e.target.value;
+  };
+
   return (
     <div className="bg-white p-8 rounded-xl shadow-md w-full mt-10 md:w-3/4 mx-auto">
       <h2 className="border-b border-b-gray-300 text-xl">Challenge Editor</h2>
@@ -32,17 +41,18 @@ const ChallengeEditor = () => {
           <section>
             <div className="flex justify-between items-center">
               <div className="border border-gray-100 bg-gray-50 p-5 rounded-lg">
-                <p className="mt-4">
-                  Your team manages a backend API for a growing e-commerce
-                  platform.
-                </p>
+                <p className="mt-4">{/* {e.target.value} */}</p>
               </div>
-              <button>Delete</button>
+              <button>
+                <Trash2 />
+              </button>
             </div>
             <input
               type="text"
               placeholder="Add Deliverable"
               className="border border-dashed rounded-full p-2"
+              //   value={addDeliverable(v)}
+              onKeyDown={(e) => addDeliverable(e)}
             />
           </section>
         </div>
