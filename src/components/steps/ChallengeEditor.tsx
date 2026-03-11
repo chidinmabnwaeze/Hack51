@@ -1,21 +1,20 @@
-import { Trash2 } from "lucide-react";
+import { Trash2, PlusCircle } from "lucide-react";
+import { useState } from "react";
 
 const ChallengeEditor = () => {
-  const details = [
-    {
-      title: "Role Title",
-      value: "Software Engineer",
-    },
-    {
-      title: "Role Level",
-      value: "Expert level",
-    },
-  ];
+  const [deliverables, setDeliverables] = useState<string[]>([]);
+  const [value, setValue] = useState("");
 
-  const addDeliverable = (e) => {
-    // logic to add a new deliverable
-    e.preventDefault;
-    const value = e.target.value;
+  const addDeliverable = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setDeliverables([...deliverables, value]);
+    setValue("");
+  };
+
+  const removeDeliverable = (index: number) => {
+    const newDeliverables = [...deliverables];
+    newDeliverables.splice(index, 1);
+    setDeliverables(newDeliverables);
   };
 
   return (
@@ -38,22 +37,43 @@ const ChallengeEditor = () => {
 
         <div className="bg-white rounded-xl mt-12 ">
           <h2 className="">Deliverables</h2>
-          <section>
-            <div className="flex justify-between items-center">
-              <div className="border border-gray-100 bg-gray-50 p-5 rounded-lg">
-                <p className="mt-4">{/* {e.target.value} */}</p>
+          <section className="mt-4">
+            {deliverables.map((deliverable, index) => (
+              <div className="flex justify-between items-center" key={index}>
+                <div className="border border-gray-100 bg-gray-50 p-2 rounded-lg w-full">
+                  <p className="">{deliverable}</p>
+                </div>
+                <button
+                  onClick={() => removeDeliverable(index)}
+                  className="ml-4 hover:text-red-700"
+                >
+                  <Trash2 />
+                </button>
               </div>
-              <button>
-                <Trash2 />
-              </button>
-            </div>
-            <input
-              type="text"
-              placeholder="Add Deliverable"
-              className="border border-dashed rounded-full p-2"
-              //   value={addDeliverable(v)}
-              onKeyDown={(e) => addDeliverable(e)}
-            />
+            ))}
+            <form
+              action=""
+              onSubmit={(e) => addDeliverable(e)}
+              className="mt-4"
+            >
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Add Deliverable"
+                  className="border border-dashed rounded-full p-2 pl-10"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                />
+                <PlusCircle
+                  className="ml-2 cursor-pointer absolute top-0 bottom-0 left-0 my-auto text-gray-400"
+                  onClick={(e: React.MouseEvent<SVGSVGElement>) =>
+                    addDeliverable(
+                      e as unknown as React.SubmitEvent<HTMLFormElement>,
+                    )
+                  }
+                />
+              </div>
+            </form>
           </section>
         </div>
       </div>
