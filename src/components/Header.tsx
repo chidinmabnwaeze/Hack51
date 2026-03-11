@@ -1,3 +1,5 @@
+import logo from "../assets/logo/image 42.png";
+
 type HeaderProps = {
   logo: string;
   firstname: string;
@@ -17,7 +19,7 @@ const Header = ({
     <header className="fixed top-0 left-0 w-full bg-white shadow z-20 flex justify-between items-center px-6 py-3">
       {/* logo */}
       <div>
-        <img src={logo} alt="Logo" className="h-8" />
+        <img src={logo} alt="Logo" className="h-18" />
       </div>
 
       {/* user info */}

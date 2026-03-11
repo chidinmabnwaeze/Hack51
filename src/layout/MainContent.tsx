@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { Outlet } from "react-router-dom";
+import logo from "../assets/logo/image 42.png";
 
 const MainContent = () => {
   return (
@@ -22,7 +23,7 @@ const MainContent = () => {
       {/* main area including header and page content */}
       <div className="flex-1">
         <Header
-          logo="/logo.png"
+          logo={logo}
           firstname="John"
           lastname="Doe"
           usermode="Admin"

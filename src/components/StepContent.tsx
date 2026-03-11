@@ -1,9 +1,10 @@
-import SelectRole from "./steps/selectRole";
+import SelectRole from "./steps/SelectRole";
 import SkillLevel from "./steps/SkillLevel";
 import RoleDetails from "./steps/RoleDetails";
 import ReviewSubmit from "./steps/ReviewSubmit";
 import Challenge from "./steps/Challenge";
 import ChallengeEditor from "./steps/ChallengeEditor";
+import RubricEditor from "./steps/RubricEditor";
 
 const StepContent = ({ step }: { step: number }) => {
   const steps = [
@@ -11,8 +12,9 @@ const StepContent = ({ step }: { step: number }) => {
     <SkillLevel />,
     <RoleDetails />,
     <Challenge />,
-    <ChallengeEditor />,
-    <ReviewSubmit />,
+    <ChallengeEditor deliverables={[]} scenario="" title="" rules="" submission_requirements="" />,
+    <RubricEditor/>,
+    <ReviewSubmit />
   ];
 
   return steps[step - 1];

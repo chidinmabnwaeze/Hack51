@@ -9,34 +9,31 @@ interface Challengeprops {
   submission_requirements: string;
 }
 
-const ChallengeEditor: React.FC<Challengeprops> = ({
-  title,
-  scenario,
-  deliverables,
-  rules,
-  submission_requirements,
-}) => {
-  const [deliverable, setDeliverable] = useState<string[]>([]);
+const RubricEditor = () => {
+  const [deliverables, setDeliverables] = useState<string[]>([]);
   const [value, setValue] = useState("");
 
   const addDeliverable = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setDeliverable([...deliverable, value]);
+    setDeliverables([...deliverables, value]);
     setValue("");
   };
 
   const removeDeliverable = (index: number) => {
-    const newDeliverables = [...deliverable];
+    const newDeliverables = [...deliverables];
     newDeliverables.splice(index, 1);
-    setDeliverable(newDeliverables);
+    setDeliverables(newDeliverables);
   };
 
   return (
     <div className="bg-white p-8 rounded-xl shadow-md w-full mt-10 md:w-3/4 mx-auto">
-      <h2 className="border-b border-b-gray-300 text-xl">Challenge Editor</h2>
+      <h2 className="border-b border-b-gray-300 text-xl">Rubric Editor</h2>
 
       <div className="bg-white rounded-xl mt-12 ">
-        <h2 className="">Scenerio</h2>
+        <div className="flex">
+        <h2 className="">Scoring Weight % :</h2>
+        <span className={50 >= 50 ? "text-green-500" : "text-red-500"}>50%</span>
+        </div>
         <div className="border border-gray-100 bg-gray-50 p-5 rounded-lg">
           <p className="mt-4">
             Your team manages a backend API for a growing e-commerce platform.
@@ -108,4 +105,4 @@ const ChallengeEditor: React.FC<Challengeprops> = ({
   );
 };
 
-export default ChallengeEditor;
+export default RubricEditor;
