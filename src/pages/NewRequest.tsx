@@ -50,12 +50,12 @@ const NewRequest = () => {
             Previous
           </button>
         )}
-        {step < 6 ? (
+        {step < 10 ? (
           <button
             onClick={nextStep}
             className="bg-[#FF0046] hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg ml-4"
           >
-            {step === 6 ? "Submit" : "Next"}
+            {step === 10? "Submit" : "Next"}
           </button>
         ) : (
           <button
