@@ -29,7 +29,7 @@ const MainContent = () => {
           usermode="Admin"
           avatar="/avatar.png"
         />
-        <main className="ml-64 mt-16 p-6 bg-gray-50 min-h-screen">
+        <main className="ml-64 mt-24 p-6 bg-gray-50 min-h-screen">
           <Outlet />
         </main>
       </div>

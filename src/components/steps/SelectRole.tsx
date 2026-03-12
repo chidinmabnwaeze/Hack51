@@ -1,24 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface RoleProps {
-  roles: string[];
+  roles?: string[]; // optional; fallback provided
+  id?: number;
+  isChecked?: boolean;
+  onChange?: (role: string) => void;
 }
 
-const SelectRole = () => {
-  const roles = ["Software Engineer", "Product Manager", "Designer"];
+const defaultRoles = ["Software Engineer", "Product Manager", "Designer"];
+
+const SelectRole: React.FC<RoleProps> = ({
+  roles = defaultRoles,
+  onChange,
+}) => {
+  const [selectedRole, setSelectedRole] = useState<string>("");
+
+  const handleRoleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const role = event.target.value;
+    setSelectedRole(role);
+    onChange?.(role);
+  };
 
   return (
     <div className="bg-white p-8 rounded-xl shadow-md w-full mt-8 md:w-3/4 mx-auto">
       <h2 className="border-b border-b-gray-300 text-xl">
-        Select from existing roles
+        Select one from existing roles
       </h2>
       {roles.map((role, index) => (
         <div
           key={index}
-          className="p-4 mt-4 gap-4 cursor-pointer hover:bg-gray-100"
+          className="p-4 mt-4 gap-4 cursor-pointer hover:bg-gray-100 flex items-center"
         >
-          <input type="checkbox" className="rounded-full" />
-          <label htmlFor="role" className="ml-5">
+          <input
+            type="radio"
+            name="role"
+            value={role}
+            checked={selectedRole === role}
+            onChange={handleRoleChange}
+            className="rounded-full p-2 checked:bg-red-700"
+          />
+          <label htmlFor="role" className="ml-3">
             {role}
           </label>
         </div>
